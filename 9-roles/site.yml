@@ -1,0 +1,16 @@
+---
+- hosts: ios
+  gather_facts: no
+  tasks:
+    - include_role:
+        name: cisco_ios
+    - name: print running cfg
+      debug:
+        var: running_cfg
+    - include_role:
+        name: gitlab_tree
+      vars:
+        page_num: 1
+    - name: print result
+      debug:
+        var: gitlab_repo_file_list
